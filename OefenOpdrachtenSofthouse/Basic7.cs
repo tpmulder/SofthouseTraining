@@ -12,7 +12,7 @@ namespace OefenOpdrachtenSofthouse
         {
             int x;
 
-            Console.WriteLine("Basic7 - ");
+            Console.WriteLine("Basic7 - A program that displays a given int to its equivalent binary form\n");
             Console.Write("Input a number: ");
             while (!int.TryParse(Console.ReadLine(), out x))
             {

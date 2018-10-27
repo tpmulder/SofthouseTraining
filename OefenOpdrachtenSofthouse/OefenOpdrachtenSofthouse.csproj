@@ -54,6 +54,7 @@
     <Compile Include="Array2.cs" />
     <Compile Include="Array3.cs" />
     <Compile Include="Array4.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="String4.cs" />
     <Compile Include="String3.cs" />

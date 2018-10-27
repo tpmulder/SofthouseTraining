@@ -12,7 +12,7 @@ namespace OefenOpdrachtenSofthouse
         {
             int n = 0;
 
-            Console.WriteLine("Basic5 - A program that solves a function");
+            Console.WriteLine("Basic5 - A program that solves a function\n");
             Console.WriteLine("Equasion to solve: x = y² - 2y +1");
             Console.WriteLine("The program solves the equasion for y - 2 to y + 2");
             Console.Write("Input y: ");

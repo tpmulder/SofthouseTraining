@@ -8,13 +8,30 @@ namespace OefenOpdrachtenSofthouse
 {
     class ForLoop2
     {
-        static void Main10(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel terug als je het programma niet meer nodig hebt
-        */
+        public static void Program10()
         {
-            for (int i = 1; i <= 9; i++)
+            int n = 0;
+            bool validation = false;
+            Console.WriteLine("ForLoop2 - A program that makes a pattern with a for loop");
+            Console.Write("Amount of lines: ");
+            while (validation == false)
+            {
+                while (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.Write("Please Enter a number between 0 and 10: ");
+                }
+                if (n > 0 && n < 10)
+                {
+                    Console.WriteLine("Amount of lines: {0}", n);
+                    validation = true;
+                }
+                else
+                {
+                    Console.Write("Please Enter a number between 0 and 10: ");
+                }
+            }
+
+            for (int i = 1; i <= n; i++)
             {
                 for (int j = 1; j <= i; j++)
                 {
@@ -22,8 +39,6 @@ namespace OefenOpdrachtenSofthouse
                 }
                 Console.WriteLine();
             }
-
-            Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
         }
     }
 }

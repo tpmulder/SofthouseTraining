@@ -8,15 +8,22 @@ namespace OefenOpdrachtenSofthouse
 {
     class ForLoop3
     {
-        static void Main11(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel terug als je het programma niet meer nodig hebt
-        */
+        public static void Program11()
         {
-            for (int i = 1; i <= 9; i++)
+            int n = 0;
+
+            Console.WriteLine("ForLoop3 - A program that makes a pattern like a pyramid with asterisk\n");
+            Console.Write("Number of lines: ");
+
+            while (!int.TryParse(Console.ReadLine(), out n))
             {
-                for (int k = 9; k >= i; k--)
+                Console.Write("Please input an int: ");
+            }
+            Console.WriteLine("A {0} lines pattern: ", n);
+
+            for (int i = 1; i <= n; i++)
+            {
+                for (int k = n; k >= i; k--)
                 {
                     Console.Write(" ");
                 }

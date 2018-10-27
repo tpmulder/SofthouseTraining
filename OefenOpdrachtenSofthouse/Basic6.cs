@@ -12,7 +12,9 @@ namespace OefenOpdrachtenSofthouse
         {
             char x;
 
+            Console.Write("Basic6 - A program that checks if the given character is a vowel, a letter, a consonant or another symbol\n");
             Console.Write("Input a character: ");
+
             while (!char.TryParse(Console.ReadLine(), out x))
             {
                 Console.WriteLine("Please Enter a single character: ");

@@ -71,29 +71,41 @@ namespace OefenOpdrachtenSofthouse
                 {
                     Basic3.Program3();
                 }
-                if (x == 4)
+                else if(x == 4)
                 {
                     Basic4.Program4();
                 }
-                if (x == 5)
+                else if(x == 5)
                 {
                     Basic5.Program5();
                 }
-                if (x == 6)
+                else if(x == 6)
                 {
                     Basic6.Program6();
                 }
-                if (x == 7)
+                else if(x == 7)
                 {
                     Basic7.Program7();
                 }
-                if (x == 8)
+                else if(x == 8)
                 {
                     ConditionalStatement1.Program8();
                 }
-                if (x == 9)
+                else if (x == 9)
                 {
                     ForLoop1.Program9();
+                }
+                else if (x == 9)
+                {
+                    ForLoop1.Program9();
+                }
+                else if (x == 10)
+                {
+                    ForLoop2.Program10();
+                }
+                else if (x == 11)
+                {
+                    ForLoop3.Program11();
                 }
 
                 int pause = 1000;

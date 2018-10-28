@@ -8,11 +8,7 @@ namespace OefenOpdrachtenSofthouse
 {
     class Array1
     {
-        static void Main12(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel weer terug als je het programma niet meer nodig hebt
-        */
+        public static void Program1()
         {
             List<int> list = new List<int>();
 
@@ -23,14 +19,11 @@ namespace OefenOpdrachtenSofthouse
                 list.Add(x);
             }
 
-
             int[] array = list.ToArray();
 
             int sum = array.Sum();
 
             Console.WriteLine("Sum of all elements stored in the array is: {0}", sum);
-
-            Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
         }
     }
 }

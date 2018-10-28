@@ -107,8 +107,11 @@ namespace OefenOpdrachtenSofthouse
                 {
                     ForLoop3.Program11();
                 }
+                else if (x == 12)
+                {
+                    Array1.Program12();
+                }
 
-                int pause = 1000;
                 bool stillGoing = true;
 
                 Console.WriteLine("\nThe program is done now");
@@ -129,7 +132,6 @@ namespace OefenOpdrachtenSofthouse
                             if (exitKeyPressed.Key == ConsoleKey.Y)
                             {
                                 Console.WriteLine("\nReturning to main menu...");
-                                Thread.Sleep(pause);
                                 Main(null);
                                 wrongKey = false;
                                 stillGoing = false;
@@ -148,7 +150,6 @@ namespace OefenOpdrachtenSofthouse
                     else if (keyPressed.Key == ConsoleKey.R)
                     {
                         Console.WriteLine("\nRerunning app...");
-                        Thread.Sleep(pause);
                         stillGoing = false;
                     }
                     else

@@ -10,20 +10,21 @@ namespace OefenOpdrachtenSofthouse
     {
         public static void Program11()
         {
-            int n = 0;
-
             Console.WriteLine("ForLoop3 - A program that makes a pattern like a pyramid with asterisk\n");
-            Console.Write("Number of lines: ");
+            Console.Write("Number of lines (Max 59) : ");
+            string n = Console.ReadLine();
 
-            while (!int.TryParse(Console.ReadLine(), out n))
+            while (!Utilities.Validation(n, 1, 59))
             {
-                Console.Write("Please input an int: ");
+                Console.WriteLine("Please enter a valid number");
+                n = Console.ReadLine();
             }
-            Console.WriteLine("A {0} lines pattern: ", n);
 
-            for (int i = 1; i <= n; i++)
+            int x = int.Parse(n);
+
+            for (int i = 1; i <= x; i++)
             {
-                for (int k = n; k >= i; k--)
+                for (int k = x; k >= i; k--)
                 {
                     Console.Write(" ");
                 }
@@ -33,8 +34,7 @@ namespace OefenOpdrachtenSofthouse
                 }
                 Console.WriteLine();
             }
-
-            Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
+            Console.WriteLine("\nNice pattern!\n");
         }
     }
 }

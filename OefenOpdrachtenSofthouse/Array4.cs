@@ -8,28 +8,38 @@ namespace OefenOpdrachtenSofthouse
 {
     class Array4
     {
-        static void Main15(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel weer terug als je het programma niet meer nodig hebt
-        */
+        public static void Program15()
         {
             List<int> list = new List<int>();
 
-            Console.WriteLine("How many elements do you want to add to your list? ");
+            Console.WriteLine("How many elements do you want to add to your list? (max 10)");
             Console.Write("Amount of elements: ");
-            int n = Convert.ToInt32(Console.ReadLine());
+            string x = Console.ReadLine();
 
-            for (int i = 1; i < n + 1; i++)
+            while (!Utilities.Validation(x, 0, 10))
             {
-                Console.Write("Enter element {0}: ", i);
-                int x = Convert.ToInt32(Console.ReadLine());
-                list.Add(x);
+                Console.WriteLine("Please enter a valid number");
+                x = Console.ReadLine();
+            }
+
+            int y = int.Parse(x);
+
+            for (int i = 1; i < y + 1; i++)
+            {
+                Console.Write("Enter element {0} (max 100): ", i);
+                string z = Console.ReadLine();
+
+                while (!Utilities.Validation(z, 0, 100))
+                {
+                    Console.WriteLine("Please enter a valid number");
+                    z = Console.ReadLine();
+                }
+
+                int w = int.Parse(z);
+                list.Add(w);
             }
 
             Console.WriteLine("Elements of list in ascending order");
-
-            int[] array = list.ToArray();
 
             var result = from element in list
                          orderby element ascending
@@ -40,8 +50,6 @@ namespace OefenOpdrachtenSofthouse
                 Console.Write(element);
                 Console.Write(" ");
             }
-
-        Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
         }
     }
 }

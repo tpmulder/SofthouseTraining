@@ -111,6 +111,34 @@ namespace OefenOpdrachtenSofthouse
                 {
                     Array1.Program12();
                 }
+                else if (x == 13)
+                {
+                    Array2.Program13();
+                }
+                else if (x == 14)
+                {
+                    Array3.Program14();
+                }
+                else if (x == 15)
+                {
+                    Array4.Program15();
+                }
+                else if (x == 16)
+                {
+                    String1.Program16();
+                }
+                else if (x == 17)
+                {
+                    String2.Program17();
+                }
+                else if (x == 18)
+                {
+                    String3.Program18();
+                }
+                else if (x == 19)
+                {
+                    String4.Program19();
+                }
 
                 bool stillGoing = true;
 

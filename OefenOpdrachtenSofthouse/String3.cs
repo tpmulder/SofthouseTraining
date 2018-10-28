@@ -8,11 +8,7 @@ namespace OefenOpdrachtenSofthouse
 {
     class String3
     {
-        static void Main18(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel weer terug als je het programma niet meer nodig hebt
-        */
+        public static void Program18()
         {
             Console.WriteLine("Input string: ");
             string p = Console.ReadLine();
@@ -30,8 +26,6 @@ namespace OefenOpdrachtenSofthouse
                 Console.Write(element);
                 Console.Write(" ");
             }
-
-            Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
         }
     }
 }

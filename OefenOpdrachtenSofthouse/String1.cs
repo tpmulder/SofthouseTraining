@@ -8,30 +8,28 @@ namespace OefenOpdrachtenSofthouse
 {
     class String1
     {
-        static void Main16(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel terug als je het programma niet meer nodig hebt
-        */
+        public static void Program16()
         {
-            int i = 0;
-            int wordCount = 1;
+            string n = Console.ReadLine().Trim();
+            int wordCount = 0, index = 0;
 
-            Console.Write("String: ");
-            string str = Console.ReadLine();
-
-            while (i <= str.Length -1)
+            while (index < n.Length)
             {
-                if(str[i]== ' ')
-                {
-                    wordCount++;
-                }
-            i++;
+                // check if current char is part of a word
+                while (index < n.Length && !char.IsWhiteSpace(n[index]))
+                    index++;
+
+                wordCount++;
+
+                // skip whitespace until next word
+                while (index < n.Length && char.IsWhiteSpace(n[index]))
+                    index++;
+
+                while (index < n.Length && !char.IsSymbol(n[index]))
+                    index++;
             }
 
             Console.Write("Total number of words in string: {0}", wordCount);
-
-            Console.ReadLine(); // Dit is zodat je in het programma blijft nadat je alles hebt ingevoerd
         }
     }
 }

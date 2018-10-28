@@ -8,11 +8,7 @@ namespace OefenOpdrachtenSofthouse
 {
     class String4
     {
-        static void Main19(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel weer terug als je het programma niet meer nodig hebt
-        */
+        public static void Program19()
         {
             Console.WriteLine("Input original string: ");
             string x = Console.ReadLine();
@@ -25,7 +21,6 @@ namespace OefenOpdrachtenSofthouse
             Console.WriteLine("Original string: {0}", x);
             Console.WriteLine("Search for in string: {0}", p);
             Console.WriteLine(TextTool.CountStringOccurrences(x, sub));
-            Console.Read();
         }
     }
 

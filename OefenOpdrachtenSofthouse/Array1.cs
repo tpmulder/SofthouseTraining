@@ -8,15 +8,23 @@ namespace OefenOpdrachtenSofthouse
 {
     class Array1
     {
-        public static void Program1()
+        public static void Program12()
         {
             List<int> list = new List<int>();
 
             for (int i = 1; i < 5; i++)
             {
                 Console.Write(string.Format("Enter element {0}: ", i));
-                int x = Convert.ToInt32(Console.ReadLine());
-                list.Add(x);
+                string x = Console.ReadLine();
+
+                while (!Utilities.Validation(x, 0, 100))
+                {
+                    Console.WriteLine("Please enter a valid number");
+                    x = Console.ReadLine();
+                }
+                int y = int.Parse(x);
+
+                list.Add(y);
             }
 
             int[] array = list.ToArray();

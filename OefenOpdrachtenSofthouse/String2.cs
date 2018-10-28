@@ -8,11 +8,7 @@ namespace OefenOpdrachtenSofthouse
 {
     class String2
     {
-        static void Main17(string[] args)
-        /* 
-        Haal het nummer achter "Main" weg en druk op start als je het programma wilt starten
-        Maar zet deze wel terug als je het programma niet meer nodig hebt
-        */
+        public static void Program17()
         {
             Console.Write("Input something: ");
             string x = Console.ReadLine();
@@ -22,7 +18,6 @@ namespace OefenOpdrachtenSofthouse
             int s = x.Count(char.IsSymbol);
 
             Console.WriteLine("Alphabets: {0},\nDigits: {1},\nSpecial characters: {2}", l, d, s);
-            Console.Read();
         }
     }
 }

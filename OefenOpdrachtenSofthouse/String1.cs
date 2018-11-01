@@ -15,13 +15,11 @@ namespace OefenOpdrachtenSofthouse
 
             while (index < n.Length)
             {
-                // check if current char is part of a word
                 while (index < n.Length && !char.IsWhiteSpace(n[index]))
                     index++;
 
                 wordCount++;
 
-                // skip whitespace until next word
                 while (index < n.Length && char.IsWhiteSpace(n[index]))
                     index++;
 

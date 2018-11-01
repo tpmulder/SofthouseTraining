@@ -12,7 +12,7 @@ namespace OefenOpdrachtenSofthouse
         public static void Main(string[] args)
         {
             int x = 0;
-            int programCount = 19;
+            int programCount = 27;
             bool validation = false;
             bool stayInProgram = true;
 
@@ -27,7 +27,7 @@ namespace OefenOpdrachtenSofthouse
             Console.WriteLine("\t8 - ConditionalStatement1");
             Console.WriteLine("\t9 - ForLoop1");
             Console.WriteLine("\t10 - ForLoop2");
-            Console.WriteLine("\t11- ForLoop3");
+            Console.WriteLine("\t11 - ForLoop3");
             Console.WriteLine("\t12 - Array1");
             Console.WriteLine("\t13 - Array2");
             Console.WriteLine("\t14 - Array3");
@@ -36,6 +36,14 @@ namespace OefenOpdrachtenSofthouse
             Console.WriteLine("\t17 - String2");
             Console.WriteLine("\t18 - String3");
             Console.WriteLine("\t19 - String4");
+            Console.WriteLine("\t20 - Exercise1");
+            Console.WriteLine("\t21 - Exercise2");
+            Console.WriteLine("\t22 - Exercise3");
+            Console.WriteLine("\t23 - Exercise4");
+            Console.WriteLine("\t24 - Exercise5");
+            Console.WriteLine("\t25 - RobotSimulator");
+            Console.WriteLine("\t26 - SecretHandshake");
+            Console.WriteLine("\t27 - PremierLeague");
 
             Console.Write("Program: ");
             while (validation == false)
@@ -45,7 +53,7 @@ namespace OefenOpdrachtenSofthouse
                     Console.WriteLine("\nPlease enter an int");
                 }
 
-                if (x <= 19)
+                if (x <= programCount)
                 {
                     Console.WriteLine("Executing program {0}...", x);
                     validation = true;
@@ -53,7 +61,7 @@ namespace OefenOpdrachtenSofthouse
                 }
                 else
                 {
-                    Console.WriteLine("\nPlease enter a valid program number ( 1 - {0}", programCount);
+                    Console.WriteLine("\nPlease enter a valid program number ( 1 - {0} )", programCount);
                 }
             }
             
@@ -138,6 +146,38 @@ namespace OefenOpdrachtenSofthouse
                 else if (x == 19)
                 {
                     String4.Program19();
+                }
+                else if (x == 20)
+                {
+                    Exercise1.Program20();
+                }
+                else if (x == 21)
+                {
+                    Exercise2.Program21();
+                }
+                else if (x == 22)
+                {
+                    Exercise3.Program22();
+                }
+                else if (x == 23)
+                {
+                    Exercise4.Program23();
+                }
+                else if (x == 24)
+                {
+                    Exercise5.Program24();
+                }
+                else if (x == 25)
+                {
+                    RobotSimulator.Program25();
+                }
+                else if (x == 26)
+                {
+                    SecretHandshake.Program26();
+                }
+                else
+                {
+                    PremierLeague.Program27();
                 }
 
                 bool stillGoing = true;

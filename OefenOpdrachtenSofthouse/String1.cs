@@ -12,7 +12,6 @@ namespace OefenOpdrachtenSofthouse
         {
             string n = Console.ReadLine().Trim();
             int wordCount = 0, index = 0;
-
             while (index < n.Length)
             {
                 // check if current char is part of a word

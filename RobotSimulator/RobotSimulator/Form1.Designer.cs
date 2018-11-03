@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,6 +38,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblFacing = new System.Windows.Forms.Label();
+            this.lblCommands = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblValidation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +102,7 @@
             this.Input.Name = "Input";
             this.Input.Size = new System.Drawing.Size(100, 20);
             this.Input.TabIndex = 5;
+            this.Input.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // label3
             // 
@@ -125,11 +133,74 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(600, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Direction";
+            // 
+            // lblFacing
+            // 
+            this.lblFacing.AutoSize = true;
+            this.lblFacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFacing.Location = new System.Drawing.Point(600, 148);
+            this.lblFacing.Name = "lblFacing";
+            this.lblFacing.Size = new System.Drawing.Size(45, 16);
+            this.lblFacing.TabIndex = 11;
+            this.lblFacing.Text = "label5";
+            // 
+            // lblCommands
+            // 
+            this.lblCommands.AutoSize = true;
+            this.lblCommands.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCommands.Location = new System.Drawing.Point(706, 151);
+            this.lblCommands.Name = "lblCommands";
+            this.lblCommands.Size = new System.Drawing.Size(45, 16);
+            this.lblCommands.TabIndex = 12;
+            this.lblCommands.Text = "label5";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(693, 116);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 20);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Commands";
+            this.label5.UseMnemonic = false;
+            // 
+            // lblValidation
+            // 
+            this.lblValidation.AutoSize = true;
+            this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValidation.Location = new System.Drawing.Point(262, 275);
+            this.lblValidation.Name = "lblValidation";
+            this.lblValidation.Size = new System.Drawing.Size(51, 20);
+            this.lblValidation.TabIndex = 14;
+            this.lblValidation.Text = "label6";
+            this.lblValidation.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblValidation.Visible = false;
+            this.lblValidation.Click += new System.EventHandler(this.lblValidation_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblValidation);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCommands);
+            this.Controls.Add(this.lblFacing);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label3);
@@ -158,6 +229,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblFacing;
+        private System.Windows.Forms.Label lblCommands;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblValidation;
     }
 }
 

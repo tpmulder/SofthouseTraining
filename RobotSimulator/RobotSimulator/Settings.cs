@@ -6,19 +6,30 @@ using System.Threading.Tasks;
 
 namespace RobotSimulator
 {
+    public enum Direction
+    {
+        north,
+        east,
+        south,
+        west
+    }
+
     class Settings
     {
         public static int Width { get; set; }
         public static int Height { get; set; }
-        public static bool Exit { get; set; }
+        public static bool IsRunning { get; set; }
         public static Direction Facing { get; set; }
+        public static bool Move { get; set; }
+        public static int Speed { get; set; }
 
         public Settings()
         {
+            Speed = 5;
             Width = 16;
             Height = 16;
-            Exit = false;
-            Facing = Direction.north;
+            IsRunning = false;
+            Facing = Direction.east;
         }
     }
 }

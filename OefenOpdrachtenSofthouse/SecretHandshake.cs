@@ -21,7 +21,7 @@ namespace OefenOpdrachtenSofthouse
             int reverse = 10000;
 
             string Wink = "wink";
-            string DoubleWink = "double wink";
+            string DoubleWink = "double blink";
             string CloseYourEyes = "close your eyes";
             string Jump = "jump";
 
@@ -32,7 +32,7 @@ namespace OefenOpdrachtenSofthouse
                 input = Console.ReadLine();
             }
 
-            //lelijkste code ooit
+            // lelijkste code ooit
             int x = int.Parse(input);
             string y = Convert.ToString(x, 2);
             int binary = int.Parse(y);

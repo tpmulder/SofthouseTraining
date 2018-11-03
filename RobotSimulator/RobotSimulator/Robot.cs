@@ -17,11 +17,4 @@ namespace RobotSimulator
             Ypos = 0;
         }
     }
-    public enum Direction
-    {
-        north,
-        east,
-        south,
-        west
-    }
 }

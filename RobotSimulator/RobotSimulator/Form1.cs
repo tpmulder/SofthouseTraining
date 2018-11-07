@@ -14,14 +14,17 @@ namespace RobotSimulator
     public partial class Form1 : Form
     {
         Robot machine = new Robot();
-        Robot machine2 = new Robot();
+        List<Rectangle> machinePath = new List<Rectangle>();
+        List<Rectangle> machineTurn = new List<Rectangle>();
         Brush machineColour = Brushes.Red;
+        Robot pathHead = new Robot();
 
-        public bool IsRunning;
+        public bool IsRunning = true;
         public char[] x;
         public List<char> input = new List<char>();
         public bool validation;
         public int coordinates;
+        public bool turn = false;
 
         public Form1()
         {
@@ -36,26 +39,31 @@ namespace RobotSimulator
         public void StartGame()
         {
             Robot machine = new Robot();
-            Robot machine2 = new Robot();
+            List<Rectangle> machinePath = new List<Rectangle>();
+            List<Rectangle> machineTurn = new List<Rectangle>();
             new Settings();
+            Robot pathHead = new Robot();
 
             gameTimer.Enabled = false;
+            IsRunning = true;
             btnStart.Enabled = true;
             validation = true;
             lblValidation.Visible = false;
+            turn = false;
+            machinePath.Clear();
+            machineTurn.Clear();
 
             lblXpos.Text = machine.Xpos.ToString();
             lblYpos.Text = machine.Ypos.ToString();
-            lblFacing.Text = Settings.Facing.ToString();
+            lblFacing.Text = machine.Facing.ToString();
             lblCommands.Text = input.Count.ToString();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-
-            Pen forward = new Pen(Color.LightGreen);
-            Pen turn = new Pen(Color.LightCyan);
+            Pen forwardColor = new Pen(Color.LightGreen);
+            Pen turnColor = new Pen(Color.Purple);
 
             canvas.FillRectangle(machineColour, machine.Xpos * Settings.Width, machine.Ypos * Settings.Height, Settings.Width, Settings.Height);
 
@@ -69,8 +77,23 @@ namespace RobotSimulator
                 int.TryParse(p2[i], out coordinates);
                 r.Add(coordinates);
             }
+
             canvas.FillEllipse(Brushes.SkyBlue, r[0], r[1], Settings.Width / 2, Settings.Height / 2);
-            canvas.DrawRectangle(forward, new Rectangle(0, 0, Settings.Width, Settings.Height));
+
+
+            for (int i = 0; i < machinePath.Count; i++)
+            {
+                canvas.DrawRectangle(forwardColor, machinePath[i]);
+            }
+            for (int i = 0; i < machineTurn.Count; i++)
+            {
+                canvas.DrawRectangle(turnColor, machineTurn[i]);
+            }
+
+            if (!IsRunning)
+            {
+                canvas.Clear(Color.White);
+            }
         }
 
         public string getFacePoint()
@@ -78,17 +101,17 @@ namespace RobotSimulator
             int facePointX = (machine.Xpos * Settings.Width + Settings.Width / 2) - (Settings.Width / 4);
             int facePointY = (machine.Ypos * Settings.Height + Settings.Height / 2) -(Settings.Height / 4);
 
-            if (Settings.Facing == Direction.north)
+            if (machine.Facing == Robot.Direction.north)
             {
                 facePointY -= 15;
                 return facePointX.ToString() + "." + facePointY.ToString();
             }
-            else if (Settings.Facing == Direction.east)
+            else if (machine.Facing == Robot.Direction.east)
             { 
                 facePointX += 15;
                 return facePointX.ToString() + "." + facePointY.ToString();
             }
-            else if (Settings.Facing == Direction.south)
+            else if (machine.Facing == Robot.Direction.south)
             {
                 facePointY += 15;
                 return facePointX.ToString() + "." + facePointY.ToString();
@@ -104,40 +127,40 @@ namespace RobotSimulator
         {
             if (letter == 'r')
             {
-                if (Settings.Facing == Direction.west)
+                if (machine.Facing == Robot.Direction.west)
                 {
-                    Settings.Facing = Direction.north;
+                    machine.Facing = Robot.Direction.north;
                 }
                 else
                 {
-                    Settings.Facing++;
+                    machine.Facing++;
                 }
             }
             if (letter == 'l')
             {
-                if (Settings.Facing == Direction.north)
+                if (machine.Facing == Robot.Direction.north)
                 {
-                    Settings.Facing = Direction.west;
+                    machine.Facing = Robot.Direction.west;
                 }
                 else
                 {
-                    Settings.Facing--;
+                    machine.Facing--;
                 }
             }
             if (letter == 'a')
             {
-                switch (Settings.Facing)
+                switch (machine.Facing)
                 {
-                    case Direction.north:
+                    case Robot.Direction.north:
                         machine.Ypos--;
                         break;
-                    case Direction.east:
+                    case Robot.Direction.east:
                         machine.Xpos++;
                         break;
-                    case Direction.south:
+                    case Robot.Direction.south:
                         machine.Ypos++;
                         break;
-                    case Direction.west:
+                    case Robot.Direction.west:
                         machine.Xpos--;
                         break;
                 }
@@ -148,41 +171,47 @@ namespace RobotSimulator
         {
             if (letter == 'r')
             {
-                if (Settings.Facing == Direction.west)
+                turn = true;
+
+                if (pathHead.Facing == Robot.Direction.west)
                 {
-                    Settings.Facing = Direction.north;
+                    pathHead.Facing = Robot.Direction.north;
                 }
                 else
                 {
-                    Settings.Facing++;
+                    pathHead.Facing++;
                 }
             }
             if (letter == 'l')
             {
-                if (Settings.Facing == Direction.north)
+                turn = true;
+
+                if (pathHead.Facing == Robot.Direction.north)
                 {
-                    Settings.Facing = Direction.west;
+                    pathHead.Facing = Robot.Direction.west;
                 }
                 else
                 {
-                    Settings.Facing--;
+                    pathHead.Facing--;
                 }
             }
             if (letter == 'a')
             {
-                switch (Settings.Facing)
+                turn = false;
+
+                switch (pathHead.Facing)
                 {
-                    case Direction.north:
-                        machine2.Ypos--;
+                    case Robot.Direction.north:
+                        pathHead.Ypos -= Settings.Height;
                         break;
-                    case Direction.east:
-                        machine2.Xpos++;
+                    case Robot.Direction.east:
+                        pathHead.Xpos += Settings.Width;
                         break;
-                    case Direction.south:
-                        machine2.Ypos++;
+                    case Robot.Direction.south:
+                        pathHead.Ypos += Settings.Height;
                         break;
-                    case Direction.west:
-                        machine2.Xpos--;
+                    case Robot.Direction.west:
+                        pathHead.Xpos -= Settings.Width;
                         break;
                 }
             }
@@ -190,21 +219,29 @@ namespace RobotSimulator
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            if (input.Count > 0)
+            if (IsRunning)
             {
-                move(input[0]);
-                input.RemoveAt(0);
-                lblXpos.Text = machine.Xpos.ToString();
-                lblYpos.Text = machine.Ypos.ToString();
-                lblCommands.Text = input.Count.ToString();
-                lblFacing.Text = Settings.Facing.ToString();
-                Invalidate();
-                pictureBox1.Invalidate();
-            }
-            else
-            {
-                Input.Clear();
-                gameTimer.Enabled = false;
+                if (input.Count > 0)
+                {
+                    move(input[0]);
+                    input.RemoveAt(0);
+                    if (machineTurn.Count > 0 && machinePath[0] == machineTurn[0])
+                    {
+                        machineTurn.RemoveAt(0);
+                    }
+                    machinePath.RemoveAt(0);
+                    lblXpos.Text = machine.Xpos.ToString();
+                    lblYpos.Text = machine.Ypos.ToString();
+                    lblCommands.Text = input.Count.ToString();
+                    lblFacing.Text = machine.Facing.ToString();
+                    Invalidate();
+                    pictureBox1.Invalidate();
+                }
+                else
+                {
+                    Input.Clear();
+                    gameTimer.Enabled = false;
+                }
             }
         }
 
@@ -237,12 +274,23 @@ namespace RobotSimulator
                 btnStart.Enabled = false;
                 Input.Clear();
             }
+            if (x.Count() > 0)
+            {
+                char y = x.Last();
+                move2(y);
+                if (y == 'r' || y == 'l')
+                {
+                    machineTurn.Add(new Rectangle(pathHead.Xpos, pathHead.Ypos, Settings.Width, Settings.Height));
+                }
+                machinePath.Add(new Rectangle(pathHead.Xpos, pathHead.Ypos, Settings.Width, Settings.Height));
+                pictureBox1.Invalidate();
+            }
         }
 
         private void lblValidation_Click(object sender, EventArgs e)
         {
-            lblValidation.Visible = false;
-            btnStart.Enabled = true;
+            IsRunning = false;
+            StartGame();
         }
     }
 }

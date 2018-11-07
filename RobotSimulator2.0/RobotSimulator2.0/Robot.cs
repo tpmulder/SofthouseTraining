@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RobotSimulator
+namespace RobotSimulator2
 {
-    class Robot
+    public class Robot
     {
         public enum Direction
         {
@@ -18,12 +18,16 @@ namespace RobotSimulator
 
         public int Xpos { get; set; }
         public int Ypos { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
         public Direction Facing { get; set; }
 
         public Robot()
         {
             Xpos = 0;
             Ypos = 0;
+            Height = 15;
+            Width = 15;
             Facing = Direction.east;
         }
     }

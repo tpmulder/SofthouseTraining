@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F5231390-8F9D-41E4-946D-C691C18CA027}</ProjectGuid>
+    <ProjectGuid>{62BECFFF-8234-426F-AB1F-C663F82E5DF3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RobotSimulator</RootNamespace>
-    <AssemblyName>RobotSimulator</AssemblyName>
+    <RootNamespace>RobotSimulator2._0</RootNamespace>
+    <AssemblyName>RobotSimulator2.0</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoxPath.cs" />
+    <Compile Include="RobotBox.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Form1.cs">

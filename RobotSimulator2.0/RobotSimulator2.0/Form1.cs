@@ -16,13 +16,15 @@ namespace RobotSimulator2
         Robot robot = new Robot();
         Robot robotPlacer = new Robot();
         List<Rectangle> robotPath = new List<Rectangle>();
+        List<Rectangle> robotRotate = new List<Rectangle>();
         List<char> charListInput;
 
         // Colors
         Brush robotColor = Brushes.Red;
         Brush facePointerColor = Brushes.Cyan;
-        Pen PathColorFw = new Pen(Color.Green);
-        Pen PathColorTrn = new Pen(Color.Black);
+        Pen PathColorFw = new Pen(Color.LightGreen);
+        Pen PathColorRot = new Pen(Color.LightCoral);
+        Pen outlines = new Pen(Color.Gray);
 
         public Form1()
         {
@@ -48,8 +50,44 @@ namespace RobotSimulator2
         }
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
+            // draws canvas
         {
+
+            // background
             Graphics canvas = e.Graphics;
+
+            int y1 = 0;
+            int y2 = 0;
+
+            canvas.DrawRectangle(outlines, 0, 0, pictureBox.Width - 1, pictureBox.Height - 1);
+            for (int i = 0; i < pictureBox.Height; i = i + robot.Height)
+            {
+                int x1 = 0;
+                int x2 = pictureBox.Width;
+
+                y1 = y1 + robot.Height;
+                y2 = y2 + robot.Height;
+
+                canvas.DrawLine(outlines, x1, y1, x2, y2);
+            }
+
+            int x3 = 0;
+            int x4 = 0;
+
+            for (int i = 0; i < pictureBox.Width; i = i + robot.Width)
+            {
+                int y3 = 0;
+                int y4 = pictureBox.Height;
+
+                x3 = x3 + robot.Width;
+                x4 = x4 + robot.Width;
+
+                canvas.DrawLine(outlines, x3, y3, x4, y4);
+            }
+
+            pictureBox.BackColor = Color.DarkBlue;
+
+            // robot
             canvas.FillRectangle(robotColor, robot.Xpos * robot.Width, robot.Ypos * robot.Height, robot.Width, robot.Height);
             canvas.FillEllipse(facePointerColor, getFacePoint());
 
@@ -57,9 +95,14 @@ namespace RobotSimulator2
             {
                 canvas.DrawRectangle(PathColorFw, robotPath[i]);
             }
+            for (int i = 0; i < robotRotate.Count; i++)
+            {
+                canvas.DrawRectangle(PathColorRot, robotRotate[i]);
+            }
         }
 
         public Rectangle getFacePoint()
+            // Locates and indicates direction of robot
         {
             int facePointX = (robot.Xpos * robot.Width + robot.Width / 2) - (robot.Width / 4);
             int facePointY = (robot.Ypos * robot.Height + robot.Height / 2) - (robot.Height / 4);
@@ -87,6 +130,7 @@ namespace RobotSimulator2
         }
 
         public void move(Robot r, char letter)
+            // movement robot at commands
         {
             if (letter == 'r')
             {
@@ -152,6 +196,7 @@ namespace RobotSimulator2
         }
 
         public void updateStats()
+            // updates labels
         {
             lblXpos.Text = robot.Xpos.ToString();
             lblYpos.Text = robot.Ypos.ToString();
@@ -160,6 +205,7 @@ namespace RobotSimulator2
         }
 
         public bool Validation(List<char> input)
+            // checks if input is valid
         {
             for (int i = 0; i < input.Count; i++)
             {
@@ -172,6 +218,7 @@ namespace RobotSimulator2
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+            // updates at input
         {
             charListInput = textBox1.Text.ToCharArray().ToList();
 
@@ -183,13 +230,13 @@ namespace RobotSimulator2
                     move(robotPlacer, y);
                     if (y == 'r' || y == 'l')
                     {
-                        // Forward = false;
+                        robotRotate.Add(new Rectangle(robotPlacer.Xpos, robotPlacer.Ypos, robot.Width, robot.Height));
                     }
                     robotPath.Add(new Rectangle(robotPlacer.Xpos, robotPlacer.Ypos, robot.Width, robot.Height));
                     pictureBox.Invalidate();
                 }
             }
-
+            lblCmd.Text = textBox1.Text.ToCharArray().Count().ToString();
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -198,7 +245,14 @@ namespace RobotSimulator2
             {
                 move(robot, charListInput[0]);
                 charListInput.RemoveAt(0);
+                robotPath.RemoveAt(0);
+
+                if (robotRotate.Count > 0 && robotPath[0] == robotRotate[0])
+                {
+                    robotRotate.RemoveAt(0);
+                }
                 updateStats();
+
                 pictureBox.Invalidate();
             }
             else
@@ -215,7 +269,6 @@ namespace RobotSimulator2
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
